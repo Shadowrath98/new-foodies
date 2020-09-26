@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Foodie App</string>
+    <string name="LOGIN">LOGIN</string>
+    <string name="SIGNUP">SIGN-UP</string>
+    <string name="Title">LOGIN</string>
+    <string name="Eemail">Enter Email:</string>
+    <string name="Epw">Enter Password:</string>
+    <string name="SPhone">Phone:</string>
+    <string name="SName">Name:</string>
+    <string name="SPW">Password:</string>
+    <string name="SCPW">Confirm Password:</string>
+    <string name="Scon">Create Account</string>
+    <string name="SEmail">Email :</string>
+    <string name="LogOut">LOGOUT</string>
+    <string name="Update">UPDATE</string>
+    <string name="Delete">DELETE</string>
+    <string name="Manage">MANAGE</string>
+    <string name="demo">Image</string>
+    <string name="invalid_confirm_password">Password does not match</string>
+</resources>
