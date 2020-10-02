@@ -17,4 +17,6 @@
     <string name="Manage">MANAGE</string>
     <string name="demo">Image</string>
     <string name="invalid_confirm_password">Password does not match</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

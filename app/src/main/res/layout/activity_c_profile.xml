@@ -17,81 +17,81 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.494" />
+        app:layout_constraintVertical_bias="0.484" />
 
     <TextView
         android:id="@+id/CPEmail"
         android:layout_width="76dp"
         android:layout_height="24dp"
         android:text="@string/SEmail"
-        android:textSize="18sp"
         android:textColor="#000"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintVertical_bias="0.541" />
 
     <TextView
         android:id="@+id/CPPhone"
         android:layout_width="74dp"
         android:layout_height="30dp"
         android:text="@string/SPhone"
-        android:textSize="18sp"
         android:textColor="#000"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.595" />
+        app:layout_constraintVertical_bias="0.607" />
 
     <TextView
         android:id="@+id/INName"
-        android:layout_width="111dp"
-        android:layout_height="18dp"
-        android:textColor="#000"
+        android:layout_width="250dp"
+        android:layout_height="25dp"
         android:background="@drawable/textviewsup"
+        android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintHorizontal_bias="0.757"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468" />
+        app:layout_constraintVertical_bias="0.478" />
 
     <TextView
         android:id="@+id/INEmail"
-        android:layout_width="120dp"
-        android:layout_height="18dp"
-        android:textColor="#000"
+        android:layout_width="250dp"
+        android:layout_height="25dp"
         android:background="@drawable/textviewsup"
+        android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintHorizontal_bias="0.757"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.531" />
+        app:layout_constraintVertical_bias="0.541" />
 
     <TextView
         android:id="@+id/INPhone"
-        android:layout_width="124dp"
-        android:layout_height="19dp"
-        android:textColor="#000"
+        android:layout_width="250dp"
+        android:layout_height="25dp"
         android:background="@drawable/textviewsup"
+        android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.613"
+        app:layout_constraintHorizontal_bias="0.757"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.598" />
+        app:layout_constraintVertical_bias="0.603" />
 
     <Button
         android:id="@+id/LogOut"
@@ -150,8 +150,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.995">
 
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
 
         <com.ismaeldivita.chipnavigation.ChipNavigationBar
+            android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"

@@ -3,8 +3,11 @@ package com.example.foodieapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,30 +15,41 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class SignUp extends AppCompatActivity {
 
-    EditText name,email,contact,password,cpw;
-    DatabaseReference db;
-    Admin fooder;
-    User foodie;
+    //assigning variables
+    EditText txtemail,txtpassword;
     Button confirm;
+    ProgressDialog progressDialog;
     DatabaseReference databaseReference;
     int counter;
 
+    //Declare firebase instance
+    private FirebaseAuth mAuth;
+
     AwesomeValidation awd;
 
+    //clera the inputfields
     public void clearControls() {
-        name.setText("");
-        email.setText("");
-        contact.setText("");
-        password.setText("");
-        cpw.setText("");
+
+        txtemail.setText("");
+
+        txtpassword.setText("");
+
     }
 
     @Override
@@ -43,79 +57,98 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        name = findViewById(R.id.Iname);
-        email = findViewById(R.id.Iemail);
-        contact = findViewById(R.id.Icont);
-        password = findViewById(R.id.Ipw);
-        cpw = findViewById(R.id.Icpw);
+        //assigning the variables to the items
+
+        txtemail = findViewById(R.id.Iemail);
+        txtpassword = findViewById(R.id.Ipw);
+
+
+        //progress dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Creating Your Account...");
 
         confirm = findViewById(R.id.Scon);
 
-        foodie = new User();
 
-        //initialising validation style
-        awd = new AwesomeValidation(ValidationStyle.BASIC);
 
-        awd.addValidation(this,R.id.Icpw,R.id.Ipw,R.string.invalid_confirm_password);
 
-        //real-time database connection
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    counter = (int) dataSnapshot.getChildrenCount();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         //Enabling on-click for button register
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    if (TextUtils.isEmpty(name.getText().toString())) {
-                        Toast.makeText(getApplicationContext(), "Please Enter your name", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (TextUtils.isEmpty(email.getText().toString())) {
-                        Toast.makeText(getApplicationContext(), "Please Enter your email", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(TextUtils.isEmpty(contact.getText().toString())) {
-                        Toast.makeText(getApplicationContext(), "Please enter your Contact", Toast.LENGTH_SHORT).show();
+                String eemail = txtemail.getText().toString().trim();
+                String pswd = txtpassword.getText().toString().trim();
+
+                mAuth = FirebaseAuth.getInstance();
+
+                //validation
+                if (!Patterns.EMAIL_ADDRESS.matcher(eemail).matches()) {
+                    txtemail.setError("Invalid Email");
+                    txtemail.setFocusable(true);
+                } else if (pswd.length() < 8) {
+                    txtpassword.setError("Password length should be more than 8 characters");
+                    txtpassword.setFocusable(true);
+                } else if (TextUtils.isEmpty(txtemail.getText().toString()))
+                    Toast.makeText(getApplicationContext(), "Please enter email", Toast.LENGTH_SHORT).show();
+                else if (TextUtils.isEmpty(txtpassword.getText().toString()))
+                    Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
+                else{
+                    Regcust(eemail, pswd);
                     }
 
-                    else if(TextUtils.isEmpty(password.getText().toString())) {
-                        Toast.makeText(getApplicationContext(),"Please Enter Password", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (password.length()<8) {
-                        password.setError("Password minimum 8 characters required");
-                        password.setFocusable(true);
-                    }
-                    else {
-                        awd.validate();
-                        foodie.setName(name.getText().toString().trim());
-                        foodie.setEmail(email.getText().toString().trim());
-                        foodie.setContact(Integer.parseInt(contact.getText().toString().trim()));
-                        foodie.setPw(password.getText().toString().trim());
-                        databaseReference.child("U"+(counter + 1)).setValue(foodie);
-
-
-                        Toast.makeText(getApplicationContext(),"Successfully Registered", Toast.LENGTH_SHORT).show();
-                        clearControls();
-                    }
                 }
-                catch (NumberFormatException e) {
-                    Toast.makeText(getApplicationContext(),"Invalid Contact Number", Toast.LENGTH_SHORT).show();
+
+
+        });
+    }
+
+    //create new user
+    public void Regcust(String email,String password){
+        progressDialog.show();
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    progressDialog.dismiss();
+                    FirebaseUser user = mAuth.getCurrentUser();
+
+                    String mail = user.getEmail();
+                    String UID = user.getUid();
+
+                    HashMap<Object, String> hashMap = new HashMap<>();
+                    hashMap.put("email",mail);
+                    hashMap.put("UID",UID);
+                    hashMap.put("Name","");
+                    hashMap.put("Contact No","");
+
+                    FirebaseDatabase db = FirebaseDatabase.getInstance();
+
+                    DatabaseReference ref = db.getReference("Users");
+
+                    ref.child(UID).setValue(hashMap);
+
+
+
+                    Toast.makeText(SignUp.this,"Your Account is created"+user.getEmail(),Toast.LENGTH_SHORT);
+                    startActivity(new Intent(SignUp.this,CProfile.class));
+                    finish();
+                }else
+                    {
+                    progressDialog.dismiss();
+                    Toast.makeText(SignUp.this,"Failed",Toast.LENGTH_SHORT).show();
                 }
             }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(SignUp.this,""+e.getMessage(),Toast.LENGTH_SHORT);
+            }
         });
-
-
     }
+
 }
+
+        
