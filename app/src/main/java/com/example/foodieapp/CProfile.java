@@ -17,8 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -61,6 +63,7 @@ public class CProfile extends AppCompatActivity {
         emailIn = findViewById(R.id.INEmail);
         contactIn = findViewById(R.id.INPhone);
         upd = findViewById(R.id.Update);
+        dlt = findViewById(R.id.Delete);
 
         //Initialising the progress dialog
         pd = new ProgressDialog(this);
@@ -101,6 +104,45 @@ public class CProfile extends AppCompatActivity {
         });
 
 
+        //delete on click listner
+        dlt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(CProfile.this);
+                builder.setTitle("Are you sure?");
+                builder.setMessage("Deleting your account will result in losing access to the foodies app");
+                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    pd.setMessage("Deleting your account!");
+                                    //Toast.makeText(CProfile.this,"Account Deleted",Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(CProfile.this,MainActivity.class);
+                                    startActivity(i);
+                                }else{
+
+                                }
+                            }
+                        });
+                    }
+                });
+                builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
+
+
 
         setuplistner();
 
@@ -108,6 +150,8 @@ public class CProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(CProfile.this,MainActivity.class);
+                startActivity(i);
             }
         });
 
@@ -212,14 +256,14 @@ public class CProfile extends AppCompatActivity {
 
 
     //On start and On stop methods
-    @Override
+    /*@Override
     protected  void onStart() {
         super.onStart();
         FirebaseAuth.getInstance().addAuthStateListener(AuthListner);
-    }
+    }*/
 
 
-    @Override
+    /*@Override
     protected void onStop() {
         super.onStop();
         if (AuthListner != null) {
@@ -231,5 +275,5 @@ public class CProfile extends AppCompatActivity {
         }
 
 
-    }
+    }*/
 }

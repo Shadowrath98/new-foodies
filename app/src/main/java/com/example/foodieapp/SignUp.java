@@ -116,14 +116,14 @@ public class SignUp extends AppCompatActivity {
 
                     String mail = user.getEmail();
                     String UID = user.getUid();
-                    //String name = user.getDisplayName();
-                    //String phn  = user.getPhoneNumber();
+                    String name = user.getDisplayName();
+                    String phn  = user.getPhoneNumber();
 
                     HashMap<Object, String> hashMap = new HashMap<>();
                     hashMap.put("email",mail);
                     hashMap.put("UID",UID);
-                    hashMap.put("Name","");
-                    hashMap.put("Contact No","");
+                    hashMap.put("Name",name);
+                    hashMap.put("Contact No",phn);
 
                     FirebaseDatabase db = FirebaseDatabase.getInstance();
 
