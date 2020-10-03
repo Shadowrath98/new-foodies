@@ -19,8 +19,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -29,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     EditText emailID;
     EditText password;
     Button btnSignup,btnLogin;
+    FirebaseDatabase db;
+    DatabaseReference ref;
+    String name, contactNo;
 
     ProgressDialog progressDialog;
 
@@ -90,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-    private void UserLogIn(String email, String password){
+    private void UserLogIn(final String email, String password){
         progressDialog.show();
         Mauth.signInWithEmailAndPassword(email,password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -106,20 +113,49 @@ public class MainActivity extends AppCompatActivity {
                     String mail = user.getEmail();
                     String UID = user.getUid();
 
-                    HashMap<Object, String> hashMap = new HashMap<>();
+                    db = FirebaseDatabase.getInstance();
+                    ref = db.getReference("Users");
+
+                    Query query = ref.orderByChild("email").equalTo(mail);
+                    query.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            for(DataSnapshot ds :  dataSnapshot.getChildren()){
+
+                                 name = ""+ds.child("Name").getValue();
+                                String email = ""+ds.child("email").getValue();
+                                 contactNo = ""+ds.child("Contact No").getValue();
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                    /*HashMap<Object, String> hashMap = new HashMap<>();
                     hashMap.put("email",mail);
                     hashMap.put("UID",UID);
-                    hashMap.put("Name","");
-                    hashMap.put("Contact No","");
+                    hashMap.put("Name", name);
+                    hashMap.put("Contact No",contactNo);*/
 
                     FirebaseDatabase db = FirebaseDatabase.getInstance();
 
                     DatabaseReference ref = db.getReference("Users");
 
-                    ref.child(UID).setValue(hashMap);
+                   // ref.child(UID).setValue(hashMap);
 
-                    startActivity(new Intent(MainActivity.this, CProfile.class));
-                    finish();
+                    if(email.equals("admin@gmail.com")){
+                        startActivity(new Intent(MainActivity.this,AManage.class));
+                        finish();
+                    }else {
+
+                        startActivity(new Intent(MainActivity.this, CProfile.class));
+                        finish();
+                    }
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

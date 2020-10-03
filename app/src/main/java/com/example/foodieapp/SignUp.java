@@ -32,7 +32,7 @@ import java.util.HashMap;
 public class SignUp extends AppCompatActivity {
 
     //assigning variables
-    EditText txtemail,txtpassword;
+    EditText txtemail,txtpassword,txtName,txtPhn;
     Button confirm;
     ProgressDialog progressDialog;
     DatabaseReference databaseReference;
@@ -59,6 +59,8 @@ public class SignUp extends AppCompatActivity {
 
         txtemail = findViewById(R.id.Iemail);
         txtpassword = findViewById(R.id.Ipw);
+        txtName = findViewById(R.id.IIName);
+        txtPhn = findViewById(R.id.IIContact);
 
 
         //progress dialog
@@ -77,6 +79,8 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 String eemail = txtemail.getText().toString().trim();
                 String pswd = txtpassword.getText().toString().trim();
+               final  String nname = txtName.getText().toString().trim();
+                final String ccontact = txtPhn.getText().toString().trim();
 
                 mAuth = FirebaseAuth.getInstance();
 
@@ -92,7 +96,7 @@ public class SignUp extends AppCompatActivity {
                 else if (TextUtils.isEmpty(txtpassword.getText().toString()))
                     Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
                 else{
-                    Regcust(eemail, pswd);
+                    Regcust(eemail, pswd,nname,ccontact);
                     startActivity(new Intent(SignUp.this, CProfile.class));
                     finish();
                     }
@@ -104,7 +108,7 @@ public class SignUp extends AppCompatActivity {
     }
 
     //create new user
-    public void Regcust(String email,String password){
+    public void Regcust(String email,String password,final String name,final String contact){
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -116,14 +120,13 @@ public class SignUp extends AppCompatActivity {
 
                     String mail = user.getEmail();
                     String UID = user.getUid();
-                    String name = user.getDisplayName();
-                    String phn  = user.getPhoneNumber();
+
 
                     HashMap<Object, String> hashMap = new HashMap<>();
                     hashMap.put("email",mail);
                     hashMap.put("UID",UID);
                     hashMap.put("Name",name);
-                    hashMap.put("Contact No",phn);
+                    hashMap.put("Contact No",contact);
 
                     FirebaseDatabase db = FirebaseDatabase.getInstance();
 

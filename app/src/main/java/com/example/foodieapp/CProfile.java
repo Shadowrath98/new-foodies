@@ -29,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.HashMap;
 
@@ -41,6 +42,7 @@ public class CProfile extends AppCompatActivity {
     FirebaseUser user;
     FirebaseDatabase db;
     DatabaseReference ref;
+    ChipNavigationBar buttonNah;
     ProgressDialog pd;
 
     FirebaseAuth fAuth;
@@ -64,6 +66,32 @@ public class CProfile extends AppCompatActivity {
         contactIn = findViewById(R.id.INPhone);
         upd = findViewById(R.id.Update);
         dlt = findViewById(R.id.Delete);
+        buttonNah = findViewById(R.id.bottom_nav);
+
+        buttonNah.setItemSelected(R.id.MyP, true);
+
+
+        //on-selected item listener for the bottonNav
+        buttonNah.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+                                                @Override
+                                                public void onItemSelected(int id) {
+                                                    switch (id) {
+                                                        case R.id.MyP:
+                                                            startActivity(new Intent(getApplicationContext(), CProfile.class));
+                                                            //overridePendingTransition(0, 0);
+                                                            break;
+                                                        case R.id.Menu:
+                                                            startActivity(new Intent(getApplicationContext(), Menu.class));
+                                                            //overridePendingTransition(0, 0);
+                                                            break;
+                                                        case R.id.Shopping:
+                                                            startActivity(new Intent(getApplicationContext(), Cart.class));
+                                                            //overridePendingTransition(0, 0);
+                                                            break;
+                                                    }
+                                                }
+                                            });
+
 
         //Initialising the progress dialog
         pd = new ProgressDialog(this);
