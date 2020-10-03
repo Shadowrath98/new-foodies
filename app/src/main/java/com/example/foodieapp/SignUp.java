@@ -36,18 +36,16 @@ public class SignUp extends AppCompatActivity {
     Button confirm;
     ProgressDialog progressDialog;
     DatabaseReference databaseReference;
-    int counter;
+
 
     //Declare firebase instance
     private FirebaseAuth mAuth;
 
-    AwesomeValidation awd;
 
     //clera the inputfields
     public void clearControls() {
 
         txtemail.setText("");
-
         txtpassword.setText("");
 
     }
@@ -95,6 +93,8 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
                 else{
                     Regcust(eemail, pswd);
+                    startActivity(new Intent(SignUp.this, CProfile.class));
+                    finish();
                     }
 
                 }
@@ -116,6 +116,8 @@ public class SignUp extends AppCompatActivity {
 
                     String mail = user.getEmail();
                     String UID = user.getUid();
+                    //String name = user.getDisplayName();
+                    //String phn  = user.getPhoneNumber();
 
                     HashMap<Object, String> hashMap = new HashMap<>();
                     hashMap.put("email",mail);
@@ -132,8 +134,7 @@ public class SignUp extends AppCompatActivity {
 
 
                     Toast.makeText(SignUp.this,"Your Account is created"+user.getEmail(),Toast.LENGTH_SHORT);
-                    startActivity(new Intent(SignUp.this,CProfile.class));
-                    finish();
+
                 }else
                     {
                     progressDialog.dismiss();
