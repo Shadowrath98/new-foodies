@@ -15,20 +15,20 @@
         <activity android:name=".Manage" />
         <activity android:name=".SignUp" />
         <activity android:name=".CProfile" />
-        <activity android:name=".CManage" />
         <activity android:name=".MainActivity">
-
-        </activity>
-        //////////////////////////////////////////////////////////////////////////////////////
-        <activity android:name=".menu.submarine.SubmarineItems"/>
-        <activity android:name=".menu.submarine.UpdateSubmarine"/>
-        <activity android:name=".menu.submarine.AddSubmarine" />
-        <activity android:name=".menu.MenuDashboard" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+ 
+        <activity android:name=".menu.submarine.SubmarineItems"/>
+        <activity android:name=".menu.submarine.UpdateSubmarine"/>
+        <activity android:name=".menu.submarine.AddSubmarine" />
+        <activity android:name=".menu.MenuDashboard" >
+
         </activity>
         <activity android:name=".menu.pizza.AddPizza" />
         <activity android:name=".MUploads" />

@@ -75,12 +75,6 @@
                     android:layout_height="match_parent" >
 
                     <ImageView
-                        android:id="@+id/pizzaDelete"
-                        android:layout_width="64dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_baseline_delete_24" />
-
-                    <ImageView
                         android:id="@+id/pizzaUpdate"
                         android:layout_width="60dp"
                         android:layout_height="match_parent"

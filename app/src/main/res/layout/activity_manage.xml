@@ -23,7 +23,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.072" />
 
+
+    <ImageButton
+        android:id="@+id/MenuBtn"
+        android:layout_width="254dp"
+        android:layout_height="217dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.558"
+        app:srcCompat="@drawable/ic_baseline_menu_book_24" />
+
+
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="409dp"
         android:layout_height="72dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,6 +50,7 @@
 
 
         <com.ismaeldivita.chipnavigation.ChipNavigationBar
+            android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
@@ -45,29 +61,33 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/cm"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="285dp" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="127dp"
+        android:layout_height="23dp"
+        android:text="Menu Manage"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.745" />
 
     <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/mm"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="452dp" />
+        android:id="@+id/imageView3"
+        android:layout_width="236dp"
+        android:layout_height="242dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logos" />
 
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="193dp"
-        android:layout_height="300dp"
-        app:srcCompat="@drawable/logos"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-60dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

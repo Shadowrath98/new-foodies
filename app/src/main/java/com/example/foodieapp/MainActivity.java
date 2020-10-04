@@ -113,29 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     String mail = user.getEmail();
                     String UID = user.getUid();
 
-                    db = FirebaseDatabase.getInstance();
-                    ref = db.getReference("Users");
 
-                    Query query = ref.orderByChild("email").equalTo(mail);
-                    query.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            for(DataSnapshot ds :  dataSnapshot.getChildren()){
-
-                                 name = ""+ds.child("Name").getValue();
-                                String email = ""+ds.child("email").getValue();
-                                 contactNo = ""+ds.child("Contact No").getValue();
-
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
                     /*HashMap<Object, String> hashMap = new HashMap<>();
                     hashMap.put("email",mail);
                     hashMap.put("UID",UID);
@@ -149,11 +127,11 @@ public class MainActivity extends AppCompatActivity {
                    // ref.child(UID).setValue(hashMap);
 
                     if(email.equals("admin@gmail.com")){
-                        startActivity(new Intent(MainActivity.this,AManage.class));
+                        startActivity(new Intent(MainActivity.this,MManage.class));
                         finish();
                     }else {
 
-                        startActivity(new Intent(MainActivity.this, CProfile.class));
+                        startActivity(new Intent(MainActivity.this,TopEats.class));
                         finish();
                     }
                 }

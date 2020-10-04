@@ -18,7 +18,7 @@ public class OurMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_our_menu);
-        imgPizza = findViewById(R.id.imgPizza);
+        imgPizza = findViewById(R.id.imgpizza);
         imgSubmarine = findViewById(R.id.imgSubmarine);
 
         imgPizza.setOnClickListener(new View.OnClickListener() {

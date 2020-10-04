@@ -41,7 +41,6 @@ public class SignUp extends AppCompatActivity {
     //Declare firebase instance
     private FirebaseAuth mAuth;
 
-
     //clera the inputfields
     public void clearControls() {
 
@@ -77,10 +76,10 @@ public class SignUp extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String eemail = txtemail.getText().toString().trim();
-                String pswd = txtpassword.getText().toString().trim();
-               final  String nname = txtName.getText().toString().trim();
-                final String ccontact = txtPhn.getText().toString().trim();
+               final String eemail = txtemail.getText().toString().trim();
+               final String pswd = txtpassword.getText().toString().trim();
+               final  String name = txtName.getText().toString().trim();
+               final String contact = txtPhn.getText().toString().trim();
 
                 mAuth = FirebaseAuth.getInstance();
 
@@ -96,9 +95,50 @@ public class SignUp extends AppCompatActivity {
                 else if (TextUtils.isEmpty(txtpassword.getText().toString()))
                     Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
                 else{
-                    Regcust(eemail, pswd,nname,ccontact);
-                    startActivity(new Intent(SignUp.this, CProfile.class));
-                    finish();
+                    mAuth = FirebaseAuth.getInstance();
+                    progressDialog.show();
+                    mAuth.createUserWithEmailAndPassword(eemail,pswd).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful())
+                            {
+                                progressDialog.dismiss();
+                                FirebaseUser user = mAuth.getCurrentUser();
+
+                                String mail = user.getEmail();
+                                String UID = user.getUid();
+
+
+                                HashMap<Object, String> hashMap = new HashMap<>();
+                                hashMap.put("email",mail);
+                                hashMap.put("UID",UID);
+                                hashMap.put("Name",name);
+                                hashMap.put("Contact No",contact);
+
+                                FirebaseDatabase db = FirebaseDatabase.getInstance();
+
+                                databaseReference = db.getReference("Users");
+
+                                databaseReference.child(UID).setValue(hashMap);
+
+                                Toast.makeText(SignUp.this,"Your Account is created"+user.getEmail(),Toast.LENGTH_SHORT);
+                                startActivity(new Intent(SignUp.this, CProfile.class));
+                                finish();
+
+                            }else
+                            {
+                                progressDialog.dismiss();
+                                Toast.makeText(SignUp.this,"Failed",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(SignUp.this,""+e.getMessage(),Toast.LENGTH_SHORT);
+                        }
+                    });
+
                     }
 
                 }
@@ -109,48 +149,7 @@ public class SignUp extends AppCompatActivity {
 
     //create new user
     public void Regcust(String email,String password,final String name,final String contact){
-        progressDialog.show();
-        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    progressDialog.dismiss();
-                    FirebaseUser user = mAuth.getCurrentUser();
 
-                    String mail = user.getEmail();
-                    String UID = user.getUid();
-
-
-                    HashMap<Object, String> hashMap = new HashMap<>();
-                    hashMap.put("email",mail);
-                    hashMap.put("UID",UID);
-                    hashMap.put("Name",name);
-                    hashMap.put("Contact No",contact);
-
-                    FirebaseDatabase db = FirebaseDatabase.getInstance();
-
-                    DatabaseReference ref = db.getReference("Users");
-
-                    ref.child(UID).setValue(hashMap);
-
-
-
-                    Toast.makeText(SignUp.this,"Your Account is created"+user.getEmail(),Toast.LENGTH_SHORT);
-
-                }else
-                    {
-                    progressDialog.dismiss();
-                    Toast.makeText(SignUp.this,"Failed",Toast.LENGTH_SHORT).show();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressDialog.dismiss();
-                Toast.makeText(SignUp.this,""+e.getMessage(),Toast.LENGTH_SHORT);
-            }
-        });
     }
 
 }
