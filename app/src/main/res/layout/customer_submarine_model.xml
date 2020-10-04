@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:id="@+id/pizzaImageView"
+            android:id="@+id/submarineImageView"
             android:padding="5dp"
             android:src="@drawable/abc" />
         <LinearLayout
@@ -32,11 +32,11 @@
                     android:layout_height="match_parent" >
 
                     <TextView
-                        android:id="@+id/nameTextView"
+                        android:id="@+id/submarineNameAdapter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:text="Name"
+                        android:text="Teacher Data"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="#D61139" />
                 </TableRow>
@@ -46,36 +46,23 @@
                     android:layout_height="match_parent" >
 
                     <TextView
-                        android:id="@+id/dateTextView"
+                        android:id="@+id/submarinePriceAdapter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:text="Size"
+                        android:text="Price : "
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textStyle="italic" />
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
 
-                    <TextView
-                        android:id="@+id/descriptionTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minLines="2"
-                        android:padding="5dp"
-                        android:text="Description"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textStyle="italic" />
-                </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
                     <ImageView
-                        android:id="@+id/pizzaUpdateCustomer"
+                        android:id="@+id/submarineUpdate"
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_logout" />

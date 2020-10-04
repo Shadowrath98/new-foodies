@@ -33,7 +33,7 @@ public class TopEats extends AppCompatActivity {
         imageOurMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TopEats.this, OurMenu.class));
+                startActivity(new Intent(TopEats.this, OurMenuCustomer.class));
             }
         });
         imageLatestDeals.setOnClickListener(new View.OnClickListener() {
