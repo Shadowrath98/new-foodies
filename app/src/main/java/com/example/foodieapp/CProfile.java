@@ -81,7 +81,7 @@ public class CProfile extends AppCompatActivity {
                                                             //overridePendingTransition(0, 0);
                                                             break;
                                                         case R.id.Menu:
-                                                            startActivity(new Intent(getApplicationContext(), Menu.class));
+                                                            startActivity(new Intent(getApplicationContext(), TopEats.class));
                                                             //overridePendingTransition(0, 0);
                                                             break;
                                                         case R.id.Shopping:

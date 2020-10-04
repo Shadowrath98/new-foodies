@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                    // ref.child(UID).setValue(hashMap);
 
                     if(email.equals("admin@gmail.com")){
-                        startActivity(new Intent(MainActivity.this,MManage.class));
+                        startActivity(new Intent(MainActivity.this,AManage.class));
                         finish();
                     }else {
 
