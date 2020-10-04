@@ -96,6 +96,8 @@ public class CProfile extends AppCompatActivity {
         //Initialising the progress dialog
         pd = new ProgressDialog(this);
 
+
+        //Retrieving the data
         Query query = ref.orderByChild("email").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -143,21 +145,22 @@ public class CProfile extends AppCompatActivity {
                 builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        ref = FirebaseDatabase.getInstance().getReference().child("User");
+                        user.delete();
+                        ref.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    pd.setMessage("Deleting your account!");
-                                    //Toast.makeText(CProfile.this,"Account Deleted",Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(CProfile.this,MainActivity.class);
-                                    startActivity(i);
-                                }else{
+                            public void onSuccess(Void aVoid) {
+                                pd.setMessage("Deleting your account!");
+                                //Toast.makeText(CProfile.this,"Account Deleted",Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(CProfile.this,MainActivity.class);
+                                startActivity(i);
+                            }
 
-                                }
+                    });
+
                             }
                         });
-                    }
-                });
+
                 builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -186,6 +189,7 @@ public class CProfile extends AppCompatActivity {
 
     }
 
+    //Update Profile options
     private void EditProfileDialog() {
 
         String[] Options = {"Edit your Name","Edit your Phone number"};
@@ -208,6 +212,8 @@ public class CProfile extends AppCompatActivity {
         builder.create().show();
     }
 
+
+    //Creating the Layout with a textview for update the profile
     private void showNamePhoneUpdateDialog(final String key) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

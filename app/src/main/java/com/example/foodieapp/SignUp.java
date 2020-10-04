@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
@@ -36,6 +37,7 @@ public class SignUp extends AppCompatActivity {
     Button confirm;
     ProgressDialog progressDialog;
     DatabaseReference databaseReference;
+    Vibrator vib;
 
 
     //Declare firebase instance
@@ -60,6 +62,7 @@ public class SignUp extends AppCompatActivity {
         txtpassword = findViewById(R.id.Ipw);
         txtName = findViewById(R.id.IIName);
         txtPhn = findViewById(R.id.IIContact);
+        vib = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
 
         //progress dialog
@@ -138,7 +141,7 @@ public class SignUp extends AppCompatActivity {
                             Toast.makeText(SignUp.this,""+e.getMessage(),Toast.LENGTH_SHORT);
                         }
                     });
-
+                    vib.vibrate(200);
                     }
 
                 }

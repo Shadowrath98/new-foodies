@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     EditText password;
     Button btnSignup,btnLogin;
     FirebaseDatabase db;
+    Vibrator vib;
     DatabaseReference ref;
     String name, contactNo;
 
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         btnSignup = findViewById(R.id.SIGNUP);
         btnLogin = findViewById(R.id.LOGIN);
         Mauth = FirebaseAuth.getInstance();
+        vib = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
        
 
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
                 else{
                     UserLogIn(eemail,pswd);
+                    vib.vibrate(200);
                 }
             }
         });
