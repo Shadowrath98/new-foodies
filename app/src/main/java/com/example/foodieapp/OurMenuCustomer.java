@@ -7,10 +7,12 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodieapp.customer.CustomerSubmarineItems;
+import com.example.foodieapp.customer.customerpizza;
 import com.example.foodieapp.menu.pizza.Items;
 import com.example.foodieapp.menu.submarine.SubmarineItems;
 
-public class OurMenu extends AppCompatActivity {
+public class OurMenuCustomer extends AppCompatActivity {
 
     ImageView imgPizza,imgSubmarine;
 
@@ -24,13 +26,13 @@ public class OurMenu extends AppCompatActivity {
         imgPizza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OurMenu.this, Items.class));
+                startActivity(new Intent(OurMenuCustomer.this, customerpizza.class));
             }
         });
         imgSubmarine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OurMenu.this, SubmarineItems.class));
+                startActivity(new Intent(OurMenuCustomer.this, CustomerSubmarineItems.class));
             }
         });
     }

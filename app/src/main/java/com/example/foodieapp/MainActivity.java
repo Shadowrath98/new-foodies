@@ -131,11 +131,11 @@ public class MainActivity extends AppCompatActivity {
                    // ref.child(UID).setValue(hashMap);
 
                     if(email.equals("admin@gmail.com")){
-                        startActivity(new Intent(MainActivity.this,AManage.class));
+                        startActivity(new Intent(MainActivity.this,MManage.class));
                         finish();
                     }else {
 
-                        startActivity(new Intent(MainActivity.this, CProfile.class));
+                        startActivity(new Intent(MainActivity.this,TopEats.class));
                         finish();
                     }
                 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gray"
+    android:background="@drawable/back1"
     tools:context=".TopEats">
 
 
@@ -21,29 +21,38 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="2dp">
-
-            <ImageView
-                android:id="@+id/imgPizza"
-                android:layout_width="183dp"
-                android:layout_height="180dp"
-                app:srcCompat="@drawable/a10" />
+            android:layout_width="312dp"
+            android:layout_height="442dp">
 
             <ImageView
                 android:id="@+id/imgSubmarine"
-                android:layout_width="230dp"
-                android:layout_height="165dp"
-                app:srcCompat="@drawable/a1" />
+                android:layout_width="445dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/submarine" />
+
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="114dp"/>
+            android:layout_height="114dp">
+
+            <ImageView
+                android:id="@+id/imgpizza"
+                android:layout_width="102dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/pizza" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="143dp"/>
+
+        <ImageView
+            android:id="@+id/imgburger"
+            android:layout_width="274dp"
+            android:layout_height="580dp"
+            app:srcCompat="@drawable/burger" />
+
 
         <TableRow
             android:layout_width="match_parent"

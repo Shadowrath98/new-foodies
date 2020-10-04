@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back1"
     tools:context=".finance.UploadFinance">
 
     <ScrollView
@@ -96,7 +97,7 @@
                 android:background="#2C0367"
                 android:gravity="center"
                 android:text="Upload"
-                android:textColor="#fff" />
+                android:textColor="#fff"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/gray"
+    android:background="@drawable/back1"
     android:layout_height="match_parent"
     tools:context=".TopEats">
 
@@ -44,15 +44,43 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="114dp"/>
+            android:layout_height="114dp">
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="161dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/vegsan" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="215dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/chisa" />
+        </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="143dp"/>
+            android:layout_width="211dp"
+            android:layout_height="159dp">
+
+        </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_width="271dp"
+            android:layout_height="287dp">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="195dp"
+                android:layout_height="133dp"
+                app:srcCompat="@drawable/tusan" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="217dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ches" />
+        </TableRow>
     </TableLayout>
 
     <ImageView

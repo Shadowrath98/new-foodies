@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gray"
+    android:background="@drawable/back1"
     android:textAlignment="center"
     tools:context=".menu.MenuDashboard">
 
@@ -37,37 +37,36 @@
 
     <ImageView
         android:id="@+id/pizzaAddButton"
-        android:layout_width="142dp"
-        android:layout_height="122dp"
-        android:layout_marginStart="48dp"
+        android:layout_width="351dp"
+        android:layout_height="277dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.315"
-        app:srcCompat="@drawable/a1" />
+        app:layout_constraintVertical_bias="0.601"
+        app:srcCompat="@drawable/pizza" />
 
     <ImageView
         android:id="@+id/submarineAddButton"
-        android:layout_width="156dp"
-        android:layout_height="117dp"
-        android:layout_marginEnd="52dp"
+        android:layout_width="428dp"
+        android:layout_height="188dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.824"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32"
-        app:srcCompat="@drawable/a11" />
+        app:layout_constraintVertical_bias="0.25"
+        app:srcCompat="@drawable/submarine" />
 
     <ImageView
         android:id="@+id/burgeeAddButton"
-        android:layout_width="134dp"
-        android:layout_height="120dp"
-        android:layout_marginBottom="248dp"
+        android:layout_width="351dp"
+        android:layout_height="274dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintHorizontal_bias="0.266"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/a4" />
+        app:srcCompat="@drawable/burger" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

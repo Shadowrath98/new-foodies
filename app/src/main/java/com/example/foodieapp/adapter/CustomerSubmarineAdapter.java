@@ -13,91 +13,59 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodieapp.R;
-import com.example.foodieapp.model.Pizza;
+import com.example.foodieapp.model.Submarine;
 import com.squareup.picasso.Picasso;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 
-public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.RecyclerViewHolder> {
+public class CustomerSubmarineAdapter extends RecyclerView.Adapter<CustomerSubmarineAdapter.RecyclerViewHolder>{
     private Context mContext;
-    private ImageView btnDeletePizza, pizzaUpdate;
-    private List<Pizza> pizza;
+    private ImageView btnDeleteSubmarine,submarineUpdate;
+    private List<Submarine> submarines;
     private OnItemClickListener mListener;
-
-    public PizzaAdapter(Context context, List<Pizza> uploads) {
+    public CustomerSubmarineAdapter(Context context, List<Submarine> uploads) {
         mContext = context;
-        pizza = uploads;
+        submarines = uploads;
     }
-
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.pizza_model, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.customer_submarine_model, parent, false);
         return new RecyclerViewHolder(v);
     }
-
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        Pizza pizz = pizza.get(position);
+        Submarine submarine = submarines.get(position);
 
-        holder.nameTextView.setText(pizz.getName());
-        holder.descriptionTextView.setText(pizz.getPrice());
-        holder.dateTextView.setText(pizz.getSize());
+        holder.nameTextView.setText(submarine.getName());
+        holder.price.setText(submarine.getPrice());
+
 
         Picasso.with(mContext)
-                .load(pizz.getUrl())
+                .load(submarine.getUrl())
                 .placeholder(R.drawable.a1)
                 .fit()
                 .centerCrop()
-                .into(holder.pizzaImageView);
+                .into(holder.submarineImageView);
     }
-
     @Override
     public int getItemCount() {
-        return pizza.size();
+        return submarines.size();
     }
-
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
-        public TextView nameTextView, descriptionTextView, dateTextView;
-        public ImageView pizzaImageView;
-
+        public TextView nameTextView,price;
+        public ImageView submarineImageView;
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.nameTextView);
-            descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
-            dateTextView = itemView.findViewById(R.id.dateTextView);
-            pizzaImageView = itemView.findViewById(R.id.pizzaImageView);
-            pizzaUpdate = itemView.findViewById(R.id.pizzaUpdate);
-            btnDeletePizza = itemView.findViewById(R.id.pizzaDelete);
+            nameTextView =itemView.findViewById ( R.id.submarineNameAdapter );
+            price = itemView.findViewById(R.id.submarinePriceAdapter);
+            submarineImageView = itemView.findViewById(R.id.submarineImageView);
+            submarineUpdate = itemView.findViewById(R.id.submarineUpdate);
+            btnDeleteSubmarine = itemView.findViewById(R.id.submarineDelete);
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
 
-            btnDeletePizza.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mListener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            mListener.onDeleteItemClick(position);
-                        }
-                    }
-                }
-            });
-            pizzaUpdate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mListener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            mListener.onShowItemClick(position);
-                        }
-                    }
-                }
-            });
         }
 
         @Override
@@ -109,16 +77,14 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.RecyclerView
                 }
             }
         }
-
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Select Action");
-            MenuItem showItem = menu.add(Menu.NONE, 1, 1, "Show");
+            MenuItem showItem = menu.add( Menu.NONE, 1, 1, "Show");
             MenuItem deleteItem = menu.add(Menu.NONE, 2, 2, "Delete");
             showItem.setOnMenuItemClickListener(this);
             deleteItem.setOnMenuItemClickListener(this);
         }
-
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             if (mListener != null) {
@@ -137,12 +103,9 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.RecyclerView
             return false;
         }
     }
-
     public interface OnItemClickListener {
         void onItemClick(int position);
-
         void onShowItemClick(int position);
-
         void onDeleteItemClick(int position);
     }
 
@@ -150,4 +113,3 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.RecyclerView
         mListener = listener;
     }
 }
-

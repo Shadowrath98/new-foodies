@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gray"
+    android:background="@drawable/back1"
     tools:context=".TopEats">
   <TableLayout
 
@@ -25,8 +25,8 @@
 
       <SearchView
           android:id="@+id/searchView"
-          android:layout_width="194dp"
-          android:layout_height="31dp"
+          android:layout_width="202dp"
+          android:layout_height="wrap_content"
           android:layout_marginBottom="32dp"
           android:background="#E9EDEF"
           android:queryHint="Search" />
@@ -47,7 +47,7 @@
 
       <ImageView
           android:id="@+id/imageTopEats"
-          android:layout_width="181dp"
+          android:layout_width="172dp"
           android:layout_height="match_parent"
           app:srcCompat="@drawable/f5" />
 
@@ -96,8 +96,8 @@
 
   <ImageView
       android:id="@+id/imageView"
-      android:layout_width="192dp"
-      android:layout_height="171dp"
+      android:layout_width="194dp"
+      android:layout_height="122dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.004"

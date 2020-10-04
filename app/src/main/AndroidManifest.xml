@@ -25,8 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
         </activity>
- 
+
         <activity android:name=".menu.submarine.SubmarineItems"/>
         <activity android:name=".menu.submarine.UpdateSubmarine"/>
         <activity android:name=".menu.submarine.AddSubmarine" />
@@ -47,7 +48,13 @@
         <activity android:name=".OurMenu" />
         <activity android:name=".SpecialOffers" />
         <activity android:name=".TopCategories" />
-        <activity android:name=".TopEats" />
+        <activity android:name=".OurMenuCustomer" />
+        <activity android:name=".customer.customerpizza" />
+        <activity android:name=".customer.CustomerSubmarineItems" />
+        <activity android:name=".TopEats" >
+
+
+        </activity>
 
 
         <meta-data

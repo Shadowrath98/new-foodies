@@ -23,6 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.072" />
 
+
     <ImageButton
         android:id="@+id/MenuBtn"
         android:layout_width="254dp"
@@ -34,6 +35,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.558"
         app:srcCompat="@drawable/ic_baseline_menu_book_24" />
+
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -58,6 +60,7 @@
             app:cnb_menuResource="@menu/menu_bottom" />
 
     </RelativeLayout>
+
 
     <TextView
         android:id="@+id/title"
@@ -84,6 +87,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/logos" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

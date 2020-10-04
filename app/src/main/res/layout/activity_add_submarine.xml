@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/eth"
     tools:context=".menu.submarine.AddSubmarine">
 
     <ScrollView
@@ -22,19 +23,22 @@
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="52dp" />
+
             <TextView
                 android:id="@+id/headerTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textStyle="bold"
                 android:text="Add Submarine"
-                android:textSize="20dp" />
+                android:textColor="#F6F6F6"
+                android:textColorHighlight="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="match_parent"
-                android:layout_height="117dp"
+                android:layout_height="119dp"
                 app:srcCompat="@drawable/logos" />
 
             <EditText
